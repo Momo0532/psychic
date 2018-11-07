@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Live Psychic- Guess What Letter I'm think of</title>
+</head>
+
+<body>
+<h2>Live Psychic- Guess What Letter I'm think of</h2>
+  <div>
+    <p id="instruct-text">Press q,w,e,r,t,y to start!</p>
+    <p id="userGuess-text"></p>
+    <p id="compgGuess-text"></p>
+    
+    <p id="numOfGuess-text"></p>
+    <p id="numLeftGuess-text"></p>
+  
+    <p id="winfo"></p>
+    <p id="linfo"></p>
+    <p id="tinfo"></p>
+  </div>
+
+  <script type="text/javascript">
+    var compgGuesss = ["q", "w", "e","r","t","y"];
+
+    var totalwin = 0;
+    var totalloss = 0;
+    var totaltie = 0;
+    var totalguess = 0;
+    var totalguessleft = 10;
+
+    var instructText = document.getElementById("instruct-text");
+    var userGuessText = document.getElementById("userGuess-text");
+    var compgGuessText = document.getElementById("compgGuess-text");
+  
+    var numOfGuess = document.getElementById("numOfGuess-text");
+    var numLeftGuess = document.getElementById("numLeftGuess-text");
+   
+
+    var winsText = document.getElementById("winfo");
+    var lossesText = document.getElementById("linfo");
+    var tiesText = document.getElementById("tinfo");
+
+    document.onkeyup = function(event) {
+
+      var userGuess = event.key;
+
+      var computerGuess = compgGuesss[Math.floor(Math.random() * compgGuesss.length)];
+
+      if ((userGuess === "q") || (userGuess === "w") || (userGuess === "e") || (userGuess === "r") || (userGuess === "t") || (userGuess === "y") ){
+
+        if (((userGuess === "q") && (computerGuess === "q")) || ((userGuess === "w") && (computerGuess === "w")) || ((userGuess === "e") && (computerGuess === "e")) || ((userGuess === "r") && (computerGuess === "r") ||  ((userGuess === "t") && (computerGuess === "t")) || ((userGuess === "y") && (computerGuess === "y")))) {
+            totalwin++;
+        }
+
+        else if (userGuess !== computerGuess) {
+            totalloss++;
+        }
+        if (userGuess === computerGuess) {
+            totaltie++;
+        }
+        if (userGuess) {
+          totalguess++;
+        }
+        if (userGuess ) {
+          totalguessleft--;
+        }
+        instructText.textContent = "";
+
+        
+        userGuessText.textContent = "You chose: " + userGuess;
+        compgGuessText.textContent = "The computer chose: " + computerGuess;
+        winsText.textContent = "W: " + totalwin;
+        lossesText.textContent = "L: " + totalloss;
+        tiesText.textContent = "t: " + totaltie;
+        numLeftGuess.textContent = "Guess Left:" + totalguessleft;
+        numOfGuess.textContent = "Number Of Gusses:" + totalguess;
+    };
+  };
+  </script>
+
+</body>
+
+</html>
